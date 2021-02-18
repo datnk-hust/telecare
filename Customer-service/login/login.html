@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TeleCare Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+</head>
+<style>
+	body{
+		font-family: "Times New Roman", Times, serif;
+	
+	}
+</style>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-form-title" style="background-image: url(images/bg-01.jpg);">
+					<span class="login100-form-title-1">
+						Sign In TeleCare
+					</span>
+				</div>
+
+				<form class="login100-form validate-form">
+					<div class="wrap-input100 validate-input m-b-26" data-validate="Email is required">
+						<input class="input100" type="text" name="email" for="email" id="email" placeholder="Email">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+						<input class="input100" id="password" type="password" name="password" placeholder="Mật khẩu">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="flex-sb-m w-full p-b-30" style="margin: 20px 0 0 0;">
+						<div>
+							<a href="./resetPassword.html"  class="txt1">
+								Quên mật khẩu?
+							</a>
+						</div>
+						<div class="contact100-form-checkbox">
+							<a href="./signup.html">Đăng ký tài khoản</a>
+							<!-- <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label> -->
+						</div>
+
+						
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" id="postLogin">
+							Đăng nhập
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+<script>
+
+function getCookie(c_name) {
+		return localStorage.getItem(c_name);
+}
+	
+function setCookie(c_name, value, expiredays) {
+		return localStorage.setItem(c_name, value);
+}
+	 
+	
+$('#postLogin').click(function(e){
+	e.preventDefault();
+	var email = $('#email').val();
+	var psw = $('#password').val();
+	
+	$.ajax({
+		url: 'http://123.25.25.219:8768/ticket_service/public/api/login',
+		type: 'POST',
+		data: {
+					email: email,
+					password: psw,
+		},success: function(dt){
+			
+					localStorage.setItem("token", dt.data.access_token);
+					localStorage.setItem("user_id", dt.data.user_id);
+					localStorage.setItem("total_ticket", dt.data.total_ticket);
+					localStorage.setItem('role', dt.data.role);
+					localStorage.setItem('email', dt.data.email);
+					localStorage.setItem('name', dt.data.name);
+					localStorage.setItem('workplace', dt.data.workplace);
+					localStorage.setItem('phone', dt.data.phone);
+					role = dt.data.role;
+					if(role == 1){
+						window.open('http://123.25.25.219:9021/admin_dashboard.html','_self');
+					}
+					if(role == 3){
+						window.open('http://123.25.25.219:9021/client.html', '_self');
+					}
+					if(role == 2) {
+						window.open('http://123.25.25.219:9021/engineer.html', '_self');
+					}
+		},error: function(err){
+				alert(err.responseJSON[0]);
+				
+				}
+			});
+	});
+
+
+</script>
+</html>

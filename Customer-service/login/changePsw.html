@@ -1,0 +1,178 @@
+<html>
+    <head>
+        <title>Thay đổi mật khẩu TeleCare</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="css/util.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--===============================================================================================-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+    </head>
+
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-family: "Times New Roman", Times, serif;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            box-sizing: border-box;
+            background-color: #ebeeef;
+        }
+        .main {
+            border: 1px solid black;
+            width: 50vw;
+            height: 80vh;
+            background-color: #E2EFF3;
+            border-radius: 10px;
+        }
+        form {
+            position: relative;
+            top: 5%;
+            left: 25%;
+            
+        }
+        .head-form{
+            text-align: center;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .input-form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px;
+            margin: 10px;
+           
+            
+        }
+        .input-form > input, button{
+            padding: 7px;
+            width: 50%;
+            border-radius: 10px;
+            
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+            background-color: transparent;
+        }
+        sub {
+            margin-top: 5px;
+            
+        }
+        
+        input:focus{
+            background-color: white;
+        }
+        button {
+            background-color: #57b846;
+            opacity: 0.7;
+        }
+        button:hover {
+            opacity: 1;
+        }
+
+        @media screen and (max-width: 600px) {
+            .main {
+                width: 90vw;
+            }
+            form {
+                left: 5%;
+            }
+            .input-form > input, button {
+                width: 85%;
+            }
+        }
+    </style>
+    <body>
+        <div class="main">
+            <div class="head-form">
+                <h2>Thay đổi mật khẩu</h2>
+            </div>
+            <form>
+                <div class="input-form">
+                    <label for="pasword">Email đăng nhập</label>
+                    <input type="email" id="email" class="autoconplete">
+                </div>
+                <div class="input-form">
+                    <label for="pasword">Nhập mật khẩu mới</label>
+                    <input type="password" id="psw" class="autoconplete">
+                    <sub>*Mật khẩu dài ít nhất 6 kí tự</sub>
+                </div>
+                <div class="input-form">
+                    <label for="">Xác nhận mật khẩu mới</label>
+                    <input type="password" id="psw_c" class="autoconplete">
+                </div>
+                <div class="input-form">
+                    <button class="btn-btn primary" type="button" id="sub-psw" > Xác nhận</button>
+                </div>
+            </form>
+        </div>
+    </body>
+
+    <script>
+        $(document).keypress(function (event) {
+                if (event.keyCode === 13 && !$(event.target).hasClass("autocomplete")) {
+                $("#sub-psw").click();
+            }
+        })
+        $('#sub-psw').click(function(){
+            let email = $('#email').val();
+            let psw = $('#psw').val();
+            let psw_c = $('#psw_c').val();
+            console.log(email)
+            if(email == ''){
+                alert('Vui lòng nhập Email');
+            }else if(email.search('@') == -1){
+                alert('Email không đúng định dạng');
+            } else
+            if(psw.lenght < 6 ){
+                alert('Mật khẩu phải tối thiểu có 6 kí tự! Vui lòng nhập lại!');
+            }else if(psw != psw_c){
+                alert('Mật khẩu không trùng khớp vui lòng nhập lại!');
+                $('#psw_c').focus();
+            }else{
+                $.ajax({
+                    url: 'http://123.25.25.219:8768/ticket_service/public/api/changePassword',
+                    type: 'POST',
+                    data: {
+                        email: email,
+                        password: psw
+                    },
+                    success: function(dt){
+                        //console.log(dt.data)
+                        alert('Thay đổi mật khẩu thành công');
+                        window.location.href = './login.html' ;
+                    },
+                    error: function(err){
+                        console.log(err);
+                        alert('Thay đổi mật khẩu thất bại!');
+                    }
+                });
+            }
+            
+        })
+    </script>
+</html>

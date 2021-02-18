@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Đăng kí tài khoản TeleCare</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+</head>
+<style>
+    body{
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Times New Roman", Times, serif;
+        background-color: #ebeeef;
+    }
+    .title{
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-around;
+    }
+     .card{
+        border: none;
+    }
+    .container {
+        border: 1px solid black;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 100%;
+        
+        
+    }
+    .head {
+        margin-top: 10px;
+        border-bottom: 0.5px solid #BDBDBD;
+    }
+    .main {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex: 1;
+    }
+   .footer {
+       position: relative;
+   }
+    
+    @media  screen and (max-width: 800px) {
+        .container{
+            height: 100%;
+        }
+       .main{
+           flex-direction: column;
+       }
+    }
+</style>
+<body>
+	
+    <div class="container">
+        <div class="head">
+            <h5 class="modal-title" id="exampleModalLongTitle"><b>Đăng ký tài khoản TeleCare</b></h5>
+        </div>
+        <div class="main">
+            <div class="col">
+                <div class="form-group"><input  id="name" class="form-control autocomplete" placeholder="Họ và tên" ></div>
+                    <div class="form-group"><input type="email" id="email"  class="form-control autocomplete" placeholder="Email"></div>                                                                 
+                    <div class="form-group"><input type="text" id="phone"  class="form-control autocomplete" placeholder="Số điện thoại"></div>  
+                    <div class="form-group"><input type="text"  id="major"  class="form-control autocomplete" placeholder="Chức vụ"></div>
+            </div>
+            <div class="col">
+                <div class=" form-group"><input type="text"  id="workplace" class="form-control autocomplete" placeholder="Cơ quan làm việc"></div>
+                <div class="form-group">
+                    <select id="role"  class="form-control autocomplete">
+                        <option value="">Phân quyền</option>
+                        <option value="1">Quản lý hệ thống</option>
+                        <option value="2">Kỹ sư hệ thống</option>
+                        <option value="3">Nhân viên y tế</option>
+                        <option value="4">IT viện - Quản lý trang thiết bị</option>
+                    </select></div>
+                
+                <div class=" form-group"><input type="password"  id="psw"  class="form-control autocomplete" placeholder="Mật khẩu"></div>
+                <div class=" form-group"><input type="password"  id="psw_confirm"  class="form-control autocomplete" placeholder="Nhập lại mật khẩu"></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="modal-footer" style="display: block;">
+                <div>
+                    <h6> <i>Vui lòng nhập đầy đủ thông tin cá nhân để hệ thống xác thực với người quản lý cơ sở làm việc của bạn!</i> </h6>
+                </div><br>
+                <div>
+                <button type="button" class="btn btn-primary" id="post_signup">Đăng ký</button>
+                <a href="./login.html" style="margin-left:20px ;font-family: 'Times New Roman', Times, serif;" type="button" class="btn btn-success">Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+</body>
+<script>
+    $(document).keypress(function (event) {
+       if (event.keyCode === 13) {
+           $("#post_signup").click();
+       }
+  })
+$('#post_signup').click(function(e){
+    e.preventDefault();
+    
+    //get data
+	let email = $('#email').val();
+    let name = $('#name').val();
+    let phone = $('#phone').val();
+    let major = $('#major').val();
+    let workplace = $('#workplace').val();
+    let psw = $('#psw').val();
+    let psw_confirm = $('#psw_confirm').val();
+    let role = $('#role').val();
+    let user_id = phone+'-'+role;
+    if(email == '' || name == '' || phone == '' || major == '' || workplace == '' || psw == '' || psw_confirm == '' || role ==''){
+        alert('Chưa điền đầy đủ thông tin, vui lòng kiểm tra lại!')
+    }else if(email.search('@') == -1){
+                alert('Email không đúng định dạng');
+                $('#email').focus();
+            }
+    else if(psw !== psw_confirm){
+        alert('Mật khẩu không trùng khớp!');
+        $('#psw_confirm').focus();
+    }
+    else if(psw.length <6){
+        alert('Mật khẩu dài ít nhất 6 ký tự. Vui lòng kiểm tra lại');
+        $('#psw').focus();
+    }
+    else{
+        $.ajax({
+            url: 'http://123.25.25.219:8768/ticket_service/public/api/signup',
+            type: 'POST',
+            data: {
+                user_id: user_id,
+                email: email,
+                name: name,
+                phone: phone,
+                major: major,
+                workplace: workplace,
+                password: psw,
+                c_password: psw_confirm,
+                role: role,
+                status: 0
+            },
+            success: function(dt){
+                alert('Đã đăng ký thành công! Vui lòng kiểm tra email đã đăng ký để xác thực tài khoản!');
+                window.open('http://123.25.25.219:9021/');
+            },
+            error: function(err){
+                if( typeof err.responseJSON.error.email === 'object' && err.responseJSON.error.email !== null ){
+                    alert("Email đã có người sử dụng! Vui lòng kiểm tra lại")
+                }else if(typeof err.responseJSON.error.user_id === 'object' && err.responseJSON.error.user_id !== null){
+                    alert("Số điện thoại đã có người sử dụng! Vui lòng kiểm tra lại")
+                }else{
+                    alert("Đăng ký thất bại");
+                }
+                console.log(err.responseJSON)
+               
+            }
+        })
+    }
+})
+
+
+</script>
+</html>
